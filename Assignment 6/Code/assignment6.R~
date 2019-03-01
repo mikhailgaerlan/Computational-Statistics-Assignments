@@ -1,0 +1,6 @@
+require("LaplacesDemon")
+require("extrafont")
+par(family = 'Times New Roman')
+setwd("/Users/mikhailgaerlan/Box Sync/Education/UC Davis/2016-2017 Spring/STA 243 Computational Statistics/Assignments/Assignment 5")
+rm(list=ls())
+set.seed(0518)

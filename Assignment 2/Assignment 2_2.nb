@@ -1,0 +1,347 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13109,        339]
+NotebookOptionsPosition[     12649,        320]
+NotebookOutlinePosition[     13008,        336]
+CellTagsIndexPosition[     12965,        333]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "main", "=", 
+   "\"\</Users/mikhailgaerlan/Box Sync/Education/UC Davis/2016-2017 \
+Spring/STA 243 Computational Statistics/Assignments/Assignment 2\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", "main", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$Line", "=", "0"}], ";"}]}], "Input"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"popsize", "=", "1000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "50"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"method", "=", "\"\<aic\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filename", "=", 
+   RowBox[{"method", "<>", "\"\<_gen_data_\>\"", "<>", 
+    RowBox[{"ToString", "[", "popsize", "]"}], "<>", "\"\<_\>\"", "<>", 
+    RowBox[{"ToString", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"filename", "<>", "\"\<.png\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"data", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"AspectRatio", "\[Rule]", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"GoldenRatio", "-", "0.3"}], ")"}]}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"\"\<Genetic Algorithm Results\\n \!\(\*
+StyleBox[\"S\",
+FontSlant->\"Italic\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "popsize", "]"}], "<>", 
+        "\"\<, \!\(\*SubscriptBox[
+StyleBox[\"N\",
+FontSlant->\"Italic\"], \"same\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}]}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Iteration\>\"", ",", 
+         RowBox[{"ToUpperCase", "[", "method", "]"}]}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "\[IndentingNewLine]", "]"}],
+     ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.701761737372633*^9, 3.701761804513783*^9}, {
+  3.701761921150585*^9, 3.7017620002091093`*^9}, {3.701790506434494*^9, 
+  3.701790520288878*^9}, {3.701791021218224*^9, 3.7017910215371647`*^9}, {
+  3.701791058236311*^9, 3.701791322691804*^9}, {3.701791514188325*^9, 
+  3.701791527281549*^9}, {3.701791567283203*^9, 3.701791574316677*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"popsize", "=", "300"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"method", "=", "\"\<mdl\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filename", "=", 
+   RowBox[{"method", "<>", "\"\<_gen_data_\>\"", "<>", 
+    RowBox[{"ToString", "[", "popsize", "]"}], "<>", "\"\<_\>\"", "<>", 
+    RowBox[{"ToString", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"filename", "<>", "\"\<.png\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"data", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"AspectRatio", "\[Rule]", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"GoldenRatio", "-", "0.3"}], ")"}]}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"\"\<Genetic Algorithm Results\\n \!\(\*
+StyleBox[\"S\",
+FontSlant->\"Italic\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "popsize", "]"}], "<>", 
+        "\"\<, \!\(\*SubscriptBox[
+StyleBox[\"N\",
+FontSlant->\"Italic\"], \"same\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}]}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Generation\>\"", ",", 
+         RowBox[{"ToUpperCase", "[", "method", "]"}]}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "\[IndentingNewLine]", "]"}],
+     ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.701791040918487*^9, 3.7017910560863943`*^9}, 
+   3.7017911076257267`*^9, {3.70179157733881*^9, 3.7017915868009853`*^9}, {
+   3.701791721385581*^9, 3.701791723559764*^9}, {3.7017940902402983`*^9, 
+   3.701794091702874*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"popsize", "=", "500"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "30"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"method", "=", "\"\<mdl\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filename", "=", 
+   RowBox[{"method", "<>", "\"\<_gen_data_\>\"", "<>", 
+    RowBox[{"ToString", "[", "popsize", "]"}], "<>", "\"\<_\>\"", "<>", 
+    RowBox[{"ToString", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"filename", "<>", "\"\<.png\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"data", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"AspectRatio", "\[Rule]", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"GoldenRatio", "-", "0.3"}], ")"}]}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"\"\<Genetic Algorithm Results\\n \!\(\*
+StyleBox[\"S\",
+FontSlant->\"Italic\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "popsize", "]"}], "<>", 
+        "\"\<, \!\(\*SubscriptBox[
+StyleBox[\"N\",
+FontSlant->\"Italic\"], \"same\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}]}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Generation\>\"", ",", 
+         RowBox[{"ToUpperCase", "[", "method", "]"}]}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "\[IndentingNewLine]", "]"}],
+     ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.701792545216425*^9, 3.701792547599928*^9}, {
+  3.7017940835770493`*^9, 3.701794087141914*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"popsize", "=", "500"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "30"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"method", "=", "\"\<aic\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filename", "=", 
+   RowBox[{"method", "<>", "\"\<_gen_data_\>\"", "<>", 
+    RowBox[{"ToString", "[", "popsize", "]"}], "<>", "\"\<_\>\"", "<>", 
+    RowBox[{"ToString", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"filename", "<>", "\"\<.png\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"data", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"AspectRatio", "\[Rule]", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"GoldenRatio", "-", "0.3"}], ")"}]}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"\"\<Genetic Algorithm Results\\n \!\(\*
+StyleBox[\"S\",
+FontSlant->\"Italic\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "popsize", "]"}], "<>", 
+        "\"\<, \!\(\*SubscriptBox[
+StyleBox[\"N\",
+FontSlant->\"Italic\"], \"same\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}]}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Generation\>\"", ",", 
+         RowBox[{"ToUpperCase", "[", "method", "]"}]}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "\[IndentingNewLine]", "]"}],
+     ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.701792596454825*^9, 3.701792601018736*^9}, {
+  3.701794075243318*^9, 3.701794076503915*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"popsize", "=", "300"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"method", "=", "\"\<aic\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filename", "=", 
+   RowBox[{"method", "<>", "\"\<_gen_data_\>\"", "<>", 
+    RowBox[{"ToString", "[", "popsize", "]"}], "<>", "\"\<_\>\"", "<>", 
+    RowBox[{"ToString", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"filename", "<>", "\"\<.png\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"data", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"AspectRatio", "\[Rule]", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"GoldenRatio", "-", "0.3"}], ")"}]}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"\"\<Genetic Algorithm Results\\n \!\(\*
+StyleBox[\"S\",
+FontSlant->\"Italic\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "popsize", "]"}], "<>", 
+        "\"\<, \!\(\*SubscriptBox[
+StyleBox[\"N\",
+FontSlant->\"Italic\"], \"same\"]\) = \>\"", "<>", 
+        RowBox[{"ToString", "[", "n", "]"}]}]}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+      RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Generation\>\"", ",", 
+         RowBox[{"ToUpperCase", "[", "method", "]"}]}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "\[IndentingNewLine]", "]"}],
+     ",", 
+    RowBox[{"ImageResolution", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.701792608565516*^9, 3.701792610796547*^9}, {
+  3.701794078590711*^9, 3.701794080507545*^9}}]
+},
+WindowSize->{808, 848},
+WindowMargins->{{310, Automatic}, {Automatic, 8}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 472, 13, 138, "Input"],
+Cell[1033, 35, 2488, 57, 348, "Input"],
+Cell[3524, 94, 2375, 56, 348, "Input"],
+Cell[5902, 152, 2247, 54, 348, "Input"],
+Cell[8152, 208, 2245, 54, 348, "Input"],
+Cell[10400, 264, 2245, 54, 348, "Input"]
+}
+]
+*)
+

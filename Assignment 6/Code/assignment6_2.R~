@@ -1,0 +1,117 @@
+require("LaplacesDemon")
+require("extrafont")
+par(family = 'Times New Roman')
+setwd("/Users/mikhailgaerlan/Box Sync/Education/UC Davis/2016-2017 Spring/STA 243 Computational Statistics/Assignments/Assignment 6/Code")
+rm(list=ls())
+
+truefunction = function(x){
+  t = c(0.1,0.13,0.15,0.23,0.25,0.4,0.44,0.65,0.76,0.78,0.81)
+  h = c(4,-5,3,-4,5,-4.2,2.1,4.3,-3.1,2.1,-4.2)
+  temp = 0
+  for (i in 1:11){
+    temp = temp+h[i]/2*(1+sign(x-t[i]))
+  }
+  return(temp)
+}
+n = 512
+x = (0:(n-1))/n
+f = truefunction(x)
+set.seed(0401)
+y = f+rnorm(f)/3
+
+modelfunction = function(x,t,h){
+  temp = 0
+  for (j in 1:length(h)){
+    if (j == 1){
+      if ((x >= 0)&&(x < t[j])){
+        temp = h[j]
+        break
+      }
+    } else if (j == length(h)){
+      if ((x >= t[j-1])&&(x <= 1)){
+        temp = h[j]
+        break
+      }
+    } else {
+      if ((x >= t[j-1])&&(x < t[j])){
+        temp = h[j]
+        break
+      }
+    }
+  }
+  return(temp)
+}
+getmodel = function(limits,heights){
+  ymodel = 0*x
+  for (i in 1:length(x)){
+    ymodel[i] = modelfunction(x[i],limits,heights)
+  }
+  return(ymodel)
+}
+
+limits = read.csv("limits.csv")
+limits = limits$X
+heights = read.csv("heights.csv")
+heights = heights$X
+ymodel = getmodel(limits,heights)
+
+pdf(file = "../Graphs/fitted.pdf",height=4,width=3.5,family="Times New Roman")
+plot(x,y)
+lines(x,f)
+lines(x,ymodel,col='blue')
+dev.off()
+
+secondfunction = function(x){
+    return((4*x-2)+2*exp(-16*(4*x-2)^2))
+}
+
+f2 = secondfunction(x)
+y2 = f2+rnorm(f2)/5
+pdf(file = "../Graphs/other.pdf",height=4,width=3.5,family="Times New Roman")
+plot(f2~x,type='l',main="",xlab=expression(italic(x)),ylab=expression(italic(f(x))))
+points(y2~x)
+dev.off()
+
+#Bootstrap Residuals
+eps = y-ymodel
+B = 5000
+yboot = array(0,c(B,n))
+for(i in 1:B){
+    epsboot = sample(eps,length(eps),replace=TRUE)
+    yboot[i,] = ymodel + epsboot
+}
+upperband = x
+lowerband = x
+for(i in 1:n){
+    sorted = sort(yboot[,i])
+    upperband[i] = sorted[ceiling(0.95*B)]
+    lowerband[i] = sorted[floor(0.05*B)]
+}
+pdf(file = "../Graphs/confidenceresid1.pdf",height=4,width=3.5,family="Times New Roman")
+plot(x,y,ylim=c(min(lowerband),max(upperband)),main="Bootstrap Residuals",xlab=expression(italic(x)),ylab=expression(italic(y)))
+lines(x,f)
+lines(x,ymodel,col='blue')
+lines(x,upperband,col='green')
+lines(x,lowerband,col='red')
+dev.off()
+
+#Bootstrap Pairs
+#B = 5000
+#data = cbind(x,ymodel)
+#yboot = array(0,c(B,n,2))
+#for(i in 1:B){
+#    yboot[i,,] = data[sample.int(n,n,replace=TRUE),]
+#}
+#for(i in 1:n){
+#    sorted = sort(yboot[,i,])
+#    upperband[i] = sorted[ceiling(0.95*B)]
+#    lowerband[i] = sorted[floor(0.05*B)]
+#}
+##pdf(file = "../Graphs/confidencepairs1.pdf",height=4,width=3.5,family="Times New Roman")
+#plot(x,y,ylim=c(min(lowerband),max(upperband)),main="Bootstrap Pairs",xlab=expression(italic(x)),ylab=expression(italic(y)))
+#lines(x,f)
+#lines(x,ymodel,col='blue')
+#lines(x,upperband,col='green')
+#lines(x,lowerband,col='red')
+##dev.off()
+
